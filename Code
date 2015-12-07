@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <h1>Cubix</h1>
+  </head>
+  <body>
+  <body background="OohAAh.jpg"></body>
+    <div id="game"></div>
+    <script type="text/javascript" src="https://rawgithub.com/craftyjs/Crafty/release/dist/crafty-min.js"></script>
+   <script>
+
+      //platforms 
+      Crafty.init(1000,400, document.getElementById('game'));
+      
+      Crafty.e('Floor, 2D, Canvas, Color')
+  .attr({x:250, y:25, w:860, h:10})
+  .color('Black');
+     
+      Crafty.e('Floor, 2D, Canvas, Color')
+  .attr({x:150, y:55, w:860, h:10})
+  .color('Black');
+
+Crafty.e('Floor, 2D, Canvas, Color,Floor')
+  .attr({x:120, y:80, w:10, h:10})
+  .color('Black');
+   
+   Crafty.e('Floor, 2D, Canvas, Color,,Floor')
+  .attr({x:15, y:110, w:100, h:10})
+  .color('Black');
+
+     Crafty.e('Floor, 2D, Canvas, Color,,Floor')
+  .attr({x:201, y:165, w:70, h:10})
+  .color('Black')
+
+  Crafty.e('Floor, 2D, Canvas, Color,,Floor')
+  .attr({x:401, y:165, w:70, h:10})
+  .color('Black')
+  
+  
+  Crafty.e('Floor, 2D, Canvas, Color,,Floor')
+  .attr({x:601, y:195, w:70, h:10})
+  .color('Black')
+ 
+  
+  
+  Crafty.e('Floor, 2D, Canvas, Color,,Floor')
+  .attr({x:801, y:165, w:70, h:10})
+  .color('Black')
+   
+   Crafty.e('Floor, 2D, Canvas, Color,,Floor')
+  .attr({x:901, y:265, w:70, h:10})
+  .color('Black')
+  
+  Crafty.e('Floor, 2D, Canvas, Color,,Floor')
+  .attr({x:150, y:220, w:10, h:10})
+  .color('Black');
+  
+  Crafty.e('Floor, 2D, Canvas, Color,,Floor')
+  .attr({x:250, y:260, w:50, h:10})
+  .color('Black');
+
+    Crafty.e('Floor, 2D, Canvas, Color,Floor')
+  .attr({x:350, y:300, w:100, h:10})
+  .color('Black');
+
+  Crafty.e('Floor, 2D, Canvas, Color,Floor')
+  .attr({x:150, y:300, w:20, h:10})
+  .color('Black');
+
+    Crafty.e('Floor, 2D, Canvas, Color,Floor')
+    .attr({x:0, y:300, w:20, h:10})
+       .color('Black');
+    
+        
+
+        //Lava
+        Crafty.e('2D, Canvas, Lava')
+  .attr({x:0, y:399, w:1000, h:10})
+  
+
+      //Sprite
+  var player = Crafty.e('2D, Canvas, Color, Fourway, Gravity')
+  .attr({x: 0, y: 300, w: 10, h: 10})
+  .color('Blue')
+  .fourway(4)
+  .gravity('Floor');
+
+ 
+  // Goal
+  Crafty.e('2D, DOM, Color, Goal')
+  .attr({x:480, y: 5, w: 20, h:20 })
+  .color('#F00');
+
+  Crafty.e('2D, DOM, Color, Goal')
+  .attr({x:925, y:245, w: 20, h:20 })
+  .color('#F00');
+
+  //enemies
+  Crafty.e('2D, DOM, Color, Enemy')
+  .attr({x:226, y: 155, w: 10, h:10 })
+  .color('Red');
+
+   Crafty.e('2D, DOM, Color, Enemy')
+  .attr({x:625, y: 185, w: 10, h:10 })
+  .color('Red');
+
+  Crafty.e('2D, DOM, Color, Enemy')
+  .attr({x:176, y: 46, w: 10, h:10 })
+  .color('Red');
+  
+  Crafty.e('2D, DOM, Color, Enemy')
+  .attr({x:96, y: 100, w: 10, h:10 })
+  .color('Red');
+
+  //Power Ups
+  Crafty.e('2D, DOM, Color,Power')
+  .attr({x:400, y: 290, w: 10, h:10 })
+  .color('orange');
+
+  Crafty.e('2D, DOM, Color, Power1')
+  .attr({x:250, y: 155, w: 10, h:10 })
+  .color('orange');
+ 
+ 
+
+ player.addComponent("Collision").bind('Moved', function(from) {
+    
+   
+    if(this.hit('Enemy')) {
+       this.attr({x: 0, y: 300, w: 10, h:10})
+       .fourway(4)
+    };
+   if (this.hit('Lava')) {
+      this.attr({x: 0, y: 300, w: 10, h:10})
+      .fourway(4)
+   };
+    if (this.hit('Goal')){
+      this.attr(history.go(0))
+    }
+   if (this.hit('Power')){
+  this.attr({w: 25, h:25 })
+    .fourway(3)
+    };
+     if (this.hit('Power1')){
+  this.attr({w: 5, h: 5 })
+  .fourway(5)
+    };
+ });
+  </script>
+<INPUT TYPE="button" onClick="history.go(0)" VALUE="Retry">
+  </body>
+</html>
